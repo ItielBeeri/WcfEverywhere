@@ -10,5 +10,8 @@ namespace ServiceUtilities.OperationsManagementService
         void SetOperationCancelFlag(Guid operationId);
 
         Guid[] GetOperationsCompleted();
+
+        // for feuture use for polling multiple requests for progress and results:
+        // OperationResult[] GetPorationsResults(Guid[] ProcessesIds)
     }
 }

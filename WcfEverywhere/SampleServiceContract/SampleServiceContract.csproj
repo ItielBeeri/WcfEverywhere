@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9C564AA8-C7CE-41CD-B47E-DB851A15274D}</ProjectGuid>
+    <ProjectGuid>{57C3E455-D40D-4909-AF60-E657A752AC7B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ServiceImplementation</RootNamespace>
-    <AssemblyName>ServiceImplementation</AssemblyName>
+    <RootNamespace>SampleServiceContract</RootNamespace>
+    <AssemblyName>SampleServiceContract</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -40,17 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DoSomethingService.cs" />
-    <Compile Include="DoSomethingOperation.cs" />
-    <Compile Include="OperationIncompleteException.cs" />
+    <Compile Include="SomeParameters.cs" />
+    <Compile Include="IDoSomethingService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceBase.cs" />
+    <Compile Include="SomeResult.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServiceContract\ServiceContract.csproj">
-      <Project>{57c3e455-d40d-4909-af60-e657a752ac7b}</Project>
-      <Name>ServiceContract</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ServiceUtilities\ServiceUtilities.csproj">
       <Project>{202b4592-e80f-40f2-bb06-b49f9d1068a1}</Project>
       <Name>ServiceUtilities</Name>
