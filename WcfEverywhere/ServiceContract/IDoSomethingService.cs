@@ -1,17 +1,14 @@
 using System;
+using ServiceUtilities;
 
 namespace SevriceContract
 {
     public interface IDoSomethingService
     {
-        SomeResult DoSomething(SomeParameters parmaters);
+        OperationResult<SomeResult> DoSomething(SomeParameters parmaters);
 
-        Guid DoSomethingAsync(SomeParameters parmaters);
+        OperationStartInformation DoSomethingAsync(SomeParameters parmaters);
 
-        int DoSomethingGetProgress(Guid guid);
-
-        bool DoSomethingGetIsComplete(Guid guid);
-
-        SomeResult DoSomethingGetResult(Guid guid);
+        OperationResult<SomeResult> DoSomethingGetResult(Guid guid);
     }
 }

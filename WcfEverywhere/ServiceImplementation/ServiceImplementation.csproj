@@ -48,11 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ServiceContract\ServiceContract.csproj">
-      <Project>{57C3E455-D40D-4909-AF60-E657A752AC7B}</Project>
+      <Project>{57c3e455-d40d-4909-af60-e657a752ac7b}</Project>
       <Name>ServiceContract</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SrviceUtilities\ServiceUtilities.csproj">
-      <Project>{202B4592-E80F-40F2-BB06-B49F9D1068A1}</Project>
+    <ProjectReference Include="..\ServiceUtilities\ServiceUtilities.csproj">
+      <Project>{202b4592-e80f-40f2-bb06-b49f9d1068a1}</Project>
       <Name>ServiceUtilities</Name>
     </ProjectReference>
   </ItemGroup>

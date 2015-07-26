@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,8 +42,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncRunOperationContext.cs" />
+    <Compile Include="OperationsManagementService\IOperationsManagementService.cs" />
     <Compile Include="OperationBase.cs" />
-    <Compile Include="IOperationsManager.cs" />
+    <Compile Include="OperationResult.cs" />
+    <Compile Include="OperationsManagementService\OperationsManagementService.cs" />
+    <Compile Include="OperationsManager\IOperationsManager.cs" />
+    <Compile Include="OperationsManager\ProcessDoneEventArgs.cs" />
+    <Compile Include="OperationsManager\SingleProcessDeploymentOperationsManager.cs" />
+    <Compile Include="OperationStartInformation.cs" />
+    <Compile Include="OperationState.cs" />
+    <Compile Include="OperationStateExtensions.cs" />
+    <Compile Include="OperationStatusInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

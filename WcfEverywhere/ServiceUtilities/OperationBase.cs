@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiceUtilities.OperationsManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,7 +33,16 @@ namespace ServiceUtilities
         private void ThreadedWork(object state)
         {
             var context = ((AsyncRunOperationContext)state);
-            TResult result = Run();
+            TResult result;
+            try
+            {
+                result= Run();
+            }
+            catch (Exception ex)
+            {
+                context.OperationsManager.SetOperationFailed(OperationGuid, ex);
+                return;
+            }
             context.OperationsManager.SetOperationResult(OperationGuid, result);
             context.ResetHandler.Set();
         }

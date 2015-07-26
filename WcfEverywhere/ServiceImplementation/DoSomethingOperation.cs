@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using ServiceUtilities;
 using SevriceContract;
+using ServiceUtilities.OperationsManager;
 
 namespace ServiceImplementation
 {
@@ -23,6 +24,10 @@ namespace ServiceImplementation
             for (int i = 0; i < PROCESS_STAGES; i++)
             {
                 Thread.Sleep(SLEEP_TIME_MILISECONDS);
+                if (OperationsManager.GetIsOperationFlagedToCancel(OperationGuid))
+                {
+                    throw new OperationCanceledException();
+                }
                 OperationsManager.SetOperationProgress(OperationGuid, Convert.ToInt32((((double)i) / ((double)PROCESS_STAGES)) * 100));
             }
             return new SomeResult
