@@ -2,3 +2,4 @@
 This project consumes WCF srevices over different protocols
 
 
+Changed from identity branch
