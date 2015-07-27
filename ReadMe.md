@@ -2,4 +2,4 @@
 This project consumes WCF srevices over different protocols
 
 
-Changed from identity branch
+Change in web editor, in branch created by web UI.
