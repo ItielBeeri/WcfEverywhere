@@ -7,7 +7,7 @@ namespace ServiceUtilities
 {
     public class OperationStartInformation
     {
-        public Guid OperationGuid { get; set; }
+        public Guid OperationId { get; set; }
 
         public bool IsReportingProgress { get; set; }
 
