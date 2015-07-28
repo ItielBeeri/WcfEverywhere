@@ -33,7 +33,7 @@ namespace ServiceImplementation
             operation.RunAsync();
             return new OperationStartInformation
             {
-                OperationGuid = guid,
+                OperationId = guid,
                 IsReportingProgress = false,
                 IsSupportingCancel = false,
             };
