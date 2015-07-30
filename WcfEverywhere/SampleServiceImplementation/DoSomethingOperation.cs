@@ -1,10 +1,10 @@
 using System;
 using System.Threading;
-using SevriceContract;
+using SampleServiceContract;
 using Ziv.ServiceModel.Operations;
 using Ziv.ServiceModel.Operations.OperationsManager;
 
-namespace ServiceImplementation
+namespace SampleServiceImplementation
 {
     class DoSomethingOperation : OperationBase<SomeResult>
     {

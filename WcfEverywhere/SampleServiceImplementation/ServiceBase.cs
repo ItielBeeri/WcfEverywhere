@@ -1,4 +1,4 @@
-namespace ServiceImplementation
+namespace SampleServiceImplementation
 {
     public class ServiceBase<TOperation>
     {
