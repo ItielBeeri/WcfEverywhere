@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ServiceUtilities;
 using SevriceContract;
-using ServiceUtilities.OperationsManager;
+using Ziv.ServiceModel.Operations;
+using Ziv.ServiceModel.Operations.OperationsManager;
 
 namespace ServiceImplementation
 {

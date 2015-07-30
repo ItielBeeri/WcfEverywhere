@@ -115,7 +115,7 @@ namespace Ziv.ServiceModel.Operations.OperationsManager
                 lock (operation)
                 {
                     operation.Info.State = OperationState.Failed;
-                    operation.Info.FailureMessage = ex.ToString();
+                    operation.Info.FailureMessage = ex.Message;
                 }
                 InvokePreocessDoneEvent(operationId);
             }
