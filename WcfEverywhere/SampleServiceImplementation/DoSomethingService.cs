@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SevriceContract;
+using SampleServiceContract;
 using Ziv.ServiceModel.Operations;
 using Ziv.ServiceModel.Operations.OperationsManager;
 
-namespace ServiceImplementation
+namespace SampleServiceImplementation
 {
     public class DoSomethingService : IDoSomethingService
     {

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoSomethingForwardingService.cs" />
     <Compile Include="DoSomethingService.cs" />
     <Compile Include="DoSomethingOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

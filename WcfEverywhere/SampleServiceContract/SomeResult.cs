@@ -1,4 +1,4 @@
-namespace SevriceContract
+namespace SampleServiceContract
 {
     public class SomeResult
     {
