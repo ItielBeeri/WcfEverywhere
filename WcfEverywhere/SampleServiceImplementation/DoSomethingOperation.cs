@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
-using ServiceUtilities;
 using SevriceContract;
-using ServiceUtilities.OperationsManager;
+using Ziv.ServiceModel.Operations;
+using Ziv.ServiceModel.Operations.OperationsManager;
 
 namespace ServiceImplementation
 {

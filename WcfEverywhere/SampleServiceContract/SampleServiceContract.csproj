@@ -49,9 +49,9 @@
     <Compile Include="SomeResult.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServiceUtilities\ServiceUtilities.csproj">
-      <Project>{202b4592-e80f-40f2-bb06-b49f9d1068a1}</Project>
-      <Name>ServiceUtilities</Name>
+    <ProjectReference Include="..\Ziv.ServiceModel\Ziv.ServiceModel.csproj">
+      <Project>{42B956A3-0351-4E7A-A21D-AF825D449858}</Project>
+      <Name>Ziv.ServiceModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
