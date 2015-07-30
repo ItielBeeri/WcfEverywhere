@@ -45,12 +45,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceBase.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ServiceUtilities\ServiceUtilities.csproj">
-      <Project>{202b4592-e80f-40f2-bb06-b49f9d1068a1}</Project>
-      <Name>ServiceUtilities</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
