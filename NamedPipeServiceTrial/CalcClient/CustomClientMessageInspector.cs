@@ -7,6 +7,7 @@ using System.IO;
 using System.Xml;
 using System.ServiceModel.Channels;
 using CommonContracts;
+using System.Xml.Linq;
 
 namespace CalcClient
 {
@@ -17,10 +18,10 @@ namespace CalcClient
         {
             _user = user;
         }
-        
+
         public void AfterReceiveReply(ref System.ServiceModel.Channels.Message reply, object correlationState)
         {
-            
+
         }
 
         public object BeforeSendRequest(ref System.ServiceModel.Channels.Message request, System.ServiceModel.IClientChannel channel)
@@ -35,8 +36,7 @@ namespace CalcClient
             request.WriteMessage(writer); // the message was consumed here
             writer.Flush();
             ms.Position = 0;
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(ms);
+            XDocument xmlDoc = XDocument.Load(ms);
             this.ChangeMessage(xmlDoc);
 
             //Now recreating the message
@@ -68,13 +68,14 @@ namespace CalcClient
             //return null;
 
 
-     
-            
+
+
         }
 
-        private void ChangeMessage(XmlDocument xmlDoc)
+        private void ChangeMessage(XDocument xmlDoc)
         {
-            
+            XNamespace s = "http://www.w3.org/2003/05/soap-envelope";
+            xmlDoc.Descendants(s + "Header").Single().AddFirst(new XElement("Username", _user.Username));
         }
     }
 }
