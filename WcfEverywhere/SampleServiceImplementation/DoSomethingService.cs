@@ -6,7 +6,7 @@ using Ziv.ServiceModel.Behaviors;
 
 namespace SampleServiceImplementation
 {
-    [CustomInstanceProviderContractBehavior]
+    [CustomInstanceProviderServiceBehaviorAttribute]
     public class DoSomethingService : IDoSomethingService
     {
         private readonly IOperationsManager _operationsManager;

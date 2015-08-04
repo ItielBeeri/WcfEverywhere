@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Ziv.ServiceModel.Behaviors
 {
-    public class CustomInstanceProviderContractBehavior : Attribute, IServiceBehavior
+    public class CustomInstanceProviderServiceBehaviorAttribute : Attribute, IServiceBehavior
     {
 
         public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters)

@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Behaviors\CustomInstanceProviderContractBehavior.cs" />
+    <Compile Include="Behaviors\CustomInstanceProviderServiceBehaviorAttribute.cs" />
     <Compile Include="DependencyInjection\DependencyResolver.cs" />
     <Compile Include="DependencyInjection\IDependecyResolver.cs" />
     <Compile Include="InstanceProvider.cs" />
