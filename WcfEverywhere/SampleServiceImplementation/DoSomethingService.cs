@@ -2,9 +2,11 @@
 using SampleServiceContract;
 using Ziv.ServiceModel.Operations;
 using Ziv.ServiceModel.Operations.OperationsManager;
+using Ziv.ServiceModel.Behaviors;
 
 namespace SampleServiceImplementation
 {
+    [CustomInstanceProviderContractBehavior]
     public class DoSomethingService : IDoSomethingService
     {
         private readonly IOperationsManager _operationsManager;
@@ -45,9 +47,5 @@ namespace SampleServiceImplementation
                 );
         }
 
-        public int TestOperation(int x)
-        {
-            return x;
-        }
     }
 }

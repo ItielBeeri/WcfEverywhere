@@ -36,7 +36,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Dependencies\Microsoft.Practices.Unity.dll</HintPath>
+      <HintPath>..\Ziv.ServiceModel.Runtime\Dependencies\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -71,17 +71,20 @@
       <Project>{9C564AA8-C7CE-41CD-B47E-DB851A15274D}</Project>
       <Name>SampleServiceImplementation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ziv.ServiceModel.Runtime\Ziv.ServiceModel.Runtime.csproj">
+      <Project>{1d7a75ca-d8ee-47e6-8c67-5b5fb1139949}</Project>
+      <Name>Ziv.ServiceModel.Runtime</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ziv.ServiceModel\Ziv.ServiceModel.csproj">
       <Project>{42B956A3-0351-4E7A-A21D-AF825D449858}</Project>
       <Name>Ziv.ServiceModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dependencies\Microsoft.Practices.Unity.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="AppH.config" />
+    <None Include="AppN.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -30,18 +30,25 @@ namespace Ziv.ServiceModel.Operations
         private void ThreadedWork(object state)
         {
             var context = ((AsyncRunOperationContext)state);
-            TResult result;
             try
-            {
-                result= Run();
+            {               
+                TResult result;
+                try
+                {
+                    result = Run();
+                }
+                catch (Exception ex)
+                {
+                    context.OperationsManager.SetOperationFailed(OperationGuid, ex);
+                    return;
+                }
+                context.OperationsManager.SetOperationResult(OperationGuid, result);
+
             }
-            catch (Exception ex)
+            finally
             {
-                context.OperationsManager.SetOperationFailed(OperationGuid, ex);
-                return;
+                context.ResetHandler.Set();
             }
-            context.OperationsManager.SetOperationResult(OperationGuid, result);
-            context.ResetHandler.Set();
         }
 
         protected abstract TResult Run();
