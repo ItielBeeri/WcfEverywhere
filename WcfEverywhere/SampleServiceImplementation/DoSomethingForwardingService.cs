@@ -30,5 +30,10 @@ namespace SampleServiceImplementation
         {
             return _target.DoSomethingGetResult(guid);
         }
+
+        public int TestOperation(int x)
+        {
+            return x;
+        }
     }
 }

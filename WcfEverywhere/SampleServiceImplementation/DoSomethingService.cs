@@ -44,5 +44,10 @@ namespace SampleServiceImplementation
                 objectResult.Info
                 );
         }
+
+        public int TestOperation(int x)
+        {
+            return x;
+        }
     }
 }

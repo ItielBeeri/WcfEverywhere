@@ -15,5 +15,8 @@ namespace SampleServiceContract
 
         [OperationContract]
         OperationResult<SomeResult> DoSomethingGetResult(Guid guid);
+
+        [OperationContract]
+        int TestOperation(int x);
     }
 }

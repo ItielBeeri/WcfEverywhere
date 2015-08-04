@@ -12,6 +12,7 @@ using System.ServiceModel.Dispatcher;
 using System.ServiceModel.Channels;
 using Ziv.ServiceModel.Operations.OperationsManager;
 using Ziv.ServiceModel.Operations;
+using System.Diagnostics;
 
 namespace Ziv.ServiceModel.Test
 {
@@ -31,18 +32,14 @@ namespace Ziv.ServiceModel.Test
                 {
                     // TODO: Configure service host with dependency injecction
 
-                    //serviceHost.AddServiceEndpoint(typeof(IDoSomethingService), new BasicHttpBinding(), "DoSomethingService");
-
-                    //ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
-                    //smb.HttpGetEnabled = true;
-                    //serviceHost.Description.Behaviors.Add(smb);
-
                     serviceHost.Open();
 
                     using (ChannelFactory<IDoSomethingService> channelFactory = new ChannelFactory<IDoSomethingService>("ClientEP"))
                     {
                         IDoSomethingService channel = channelFactory.CreateChannel();
-                        channel.DoSomething(new SomeParameters() { Parameter = 37 });
+                       var someResult = channel.DoSomething(new SomeParameters() { Parameter = 37 });
+                        var result = channel.TestOperation(20);
+                        Trace.WriteLine(result);
                     }
 
                     //using (var client = new DoSomethingClient(new WSHttpBinding(), new EndpointAddress(baseAddresses)))
@@ -100,11 +97,16 @@ namespace Ziv.ServiceModel.Test
         {
             return base.Channel.DoSomethingGetResult(guid);
         }
+
+        public int TestOperation(int x)
+        {
+            return base.Channel.TestOperation(x);
+        }
     }
 
     public class UnityServiceHost : ServiceHost
     {
-       
+
         public UnityServiceHost(IUnityContainer container,
           Type serviceType, params Uri[] baseAddresses)
           : base(serviceType, baseAddresses)
