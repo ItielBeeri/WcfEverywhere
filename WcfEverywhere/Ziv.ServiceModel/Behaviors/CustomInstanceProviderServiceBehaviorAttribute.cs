@@ -26,7 +26,7 @@ namespace Ziv.ServiceModel.Behaviors
                 {
                     if (!ed.IsSystemEndpoint)
                     {
-                        ed.DispatchRuntime.InstanceProvider = new InstanceProvider();
+                        ed.DispatchRuntime.InstanceProvider = new ZivInstanceProvider();
                     }
                 }
             }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Ziv.ServiceModel.Test
 {
-    class TestingServiceHost : ServiceHost
+    class TestingServiceHost : ZivServiceHost
     {
         private static string _configFileName;
 
