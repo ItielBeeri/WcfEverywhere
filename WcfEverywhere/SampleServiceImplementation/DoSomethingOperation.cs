@@ -14,8 +14,8 @@ namespace SampleServiceImplementation
 
         private readonly SomeParameters _parmaters;
 
-        public DoSomethingOperation(IOperationsManager operationsManager, Guid operationGuid, SomeParameters parmaters)
-            : base(operationsManager, operationGuid)
+        public DoSomethingOperation(IOperationsManager operationsManager, SomeParameters parmaters)
+            : base(operationsManager, "Do Something")
         {
             _parmaters = parmaters;
         }
@@ -25,11 +25,13 @@ namespace SampleServiceImplementation
             for (int i = 0; i < PROCESS_STAGES; i++)
             {
                 Thread.Sleep(SLEEP_TIME_MILISECONDS);
-                if (OperationsManager.GetIsOperationFlagedToCancel(OperationGuid))
+                if (IsCancelationPending())
                 {
-                    throw new OperationCanceledException();
+                    ReportCancelationCompleted();
+                    return null;
                 }
-                OperationsManager.SetOperationProgress(OperationGuid, Convert.ToInt32((((double)i) / ((double)PROCESS_STAGES)) * 100));
+                int progress = Convert.ToInt32((((double)i) / ((double)PROCESS_STAGES)) * 100);
+                ReportProgress(progress);
             }
             return new SomeResult
                        {

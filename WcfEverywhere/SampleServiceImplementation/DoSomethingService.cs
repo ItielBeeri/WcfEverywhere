@@ -19,22 +19,18 @@ namespace SampleServiceImplementation
        // [PrincipalPermission(SecurityAction.Demand, Authenticated = true)]
         public OperationResult<SomeResult> DoSomething(SomeParameters parmaters)
         {
-            var operationId = _operationsManager.RegistrOperation("Do something");
-            var operation = new DoSomethingOperation(_operationsManager, operationId, parmaters);
-            var handler = operation.RunAsync();
-            handler.WaitOne();
-            return DoSomethingGetResult(operationId);
+            var operation = new DoSomethingOperation(_operationsManager, parmaters);
+            return operation.RunSync();
         }
 
         //[PrincipalPermission(SecurityAction.Demand, Authenticated = true)]
         public OperationStartInformation DoSomethingAsync(SomeParameters parmaters)
         {
-            var guid = _operationsManager.RegistrOperation("Do something");
-            var operation = new DoSomethingOperation(_operationsManager, guid, parmaters);
-            operation.RunAsync();
+            var operation = new DoSomethingOperation(_operationsManager, parmaters);
+            var operationStart = operation.RunAsync();
             return new OperationStartInformation
             {
-                OperationId = guid,
+                OperationId = operationStart.OperationId,
                 IsReportingProgress = false,
                 IsSupportingCancel = false,
             };
