@@ -8,8 +8,8 @@ namespace Ziv.ServiceModel.Operations.OperationsManager
 
     public partial class SingleProcessDeploymentOperationsManager : IOperationsManager
     {
-
-        Dictionary<Guid, SingleProcessDeploymentOperationInformation> _operations = new Dictionary<Guid, SingleProcessDeploymentOperationInformation>();
+        readonly Dictionary<Guid, SingleProcessDeploymentOperationInformation> _operations =
+            new Dictionary<Guid, SingleProcessDeploymentOperationInformation>();
 
         public Guid RegistrOperation(string displayName)
         {
@@ -36,14 +36,11 @@ namespace Ziv.ServiceModel.Operations.OperationsManager
             SingleProcessDeploymentOperationInformation operation;
             if (_operations.TryGetValue(operationId, out operation))
             {
-                lock (_operations)
+                if (operation.Info.State.IsDone())
                 {
-                    if (operation.Info.State.IsDone())
-                    {
-                        SetOperationForCollection(operation);
-                    }
-                    return operation;
+                    SetOperationForCollection(operation);
                 }
+                return operation;
             }
             else
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ServiceModel;
+using System.ServiceModel.Configuration;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,106 +23,86 @@ namespace Ziv.ServiceModel.Test
     [TestClass]
     public class BasicHttp_TestFixture
     {
+        private const string BASIC_HTTP_CONFIG_NAME = "BasicHttp.config";
+        private const string NAMED_PIPE_CONFIG_NAME = "NamedPipe.config";
+        private const string WS_HTTP_CONFIG_NAME = "WsHttp.config";
+        private const string TCP_CONFIG_NAME = "Tcp.config";
+
         [TestMethod]
-        public void TestMethod1()
+        [DeploymentItem(BASIC_HTTP_CONFIG_NAME)]
+        public void BasicHttp_NoIdendty_Test()
+        {
+            RunNoIdentityTest(BASIC_HTTP_CONFIG_NAME);
+        }
+
+        [TestMethod]
+        [DeploymentItem(NAMED_PIPE_CONFIG_NAME)]
+        public void NamedPipe_NoIdendty_Test()
+        {
+            RunNoIdentityTest(NAMED_PIPE_CONFIG_NAME);
+        }
+
+        [TestMethod]
+        [DeploymentItem(WS_HTTP_CONFIG_NAME)]
+        public void WsHttp_NoIdendty_Test()
+        {
+            RunNoIdentityTest(WS_HTTP_CONFIG_NAME);
+        }
+
+        [TestMethod]
+        [DeploymentItem(TCP_CONFIG_NAME)]
+        public void Tcp_NoIdendty_Test()
+        {
+            RunNoIdentityTest(TCP_CONFIG_NAME);
+        }
+
+        [TestMethod]
+        public void NoCommunictions_Test()
+        {
+            DoSomething(new DoSomethingService(new SingleProcessDeploymentOperationsManager()));
+        }
+
+
+        private void RunNoIdentityTest(string configFileName)
         {
             IUnityContainer container = new UnityContainer();
 
             RegisterTypes(container);
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
-            var baseAddresses = new Uri("http://localhost:8180/");
-            using (var serviceHost = new ServiceHost(typeof(DoSomethingService), baseAddresses))
+            using (var serviceHost = new TestingServiceHost(typeof(DoSomethingService), configFileName))
             {
                 serviceHost.Open();
+                var filemap = new System.Configuration.ExeConfigurationFileMap();
+                filemap.ExeConfigFilename = configFileName;
 
-                using (ChannelFactory<IDoSomethingService> channelFactory = new ChannelFactory<IDoSomethingService>(new BasicHttpBinding(), new EndpointAddress(baseAddresses)))
+                System.Configuration.Configuration config =
+                    System.Configuration.ConfigurationManager.OpenMappedExeConfiguration
+                    (filemap,
+                     System.Configuration.ConfigurationUserLevel.None);
+
+                using (ConfigurationChannelFactory<IDoSomethingService> channelFactory =
+                    new ConfigurationChannelFactory<IDoSomethingService>("ClientEP", config, null))
                 {
                     IDoSomethingService channel = channelFactory.CreateChannel();
-                    var someResult = channel.DoSomething(new SomeParameters() { Parameter = 37 });
+                    DoSomething(channel);
                 }
-
-                //using (var client = new DoSomethingClient(new WSHttpBinding(), new EndpointAddress(baseAddresses)))
-                //{
-                //    IDoSomethingService channel = client.ChannelFactory.CreateChannel();
-                //    channel.DoSomething(new SomeParameters() { Parameter = 37 });
-                //}
             }
-
         }
 
-        [TestMethod]
-        public void RunServiceAndClientOverMultipleConfiguration() { }
-
-        [TestMethod]
-        public void RunServiceAndClientOverVariousConfiguration()
+        private static void DoSomething(IDoSomethingService doSomethingService)
         {
-            IUnityContainer container = new UnityContainer();
-
-            RegisterTypes(container);
-            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
-
-            using (var serviceHost = new ServiceHost(typeof(DoSomethingService)))
-            {
-                serviceHost.Open();
-
-                using (ChannelFactory<IDoSomethingService> channelFactory = new ChannelFactory<IDoSomethingService>("ClientEP"))
-                {
-                    IDoSomethingService channel = channelFactory.CreateChannel();
-                    var someResult = channel.DoSomething(new SomeParameters() { Parameter = 37 });
-                }
-
-            }
+            int parameter = 73;
+            var someResult = doSomethingService.DoSomething(new SomeParameters() {Parameter = parameter});
+            Assert.AreEqual(
+                string.Format(DoSomethingOperation.DO_SOMETHING_RESULT_TEMPLATE, parameter),
+                someResult.Result.Result);
         }
-
 
 
         private static void RegisterTypes(IUnityContainer container)
         {
             container.RegisterType<IOperationsManager, SingleProcessDeploymentOperationsManager>(new ContainerControlledLifetimeManager());
-        }
-
-        class DoSomethingClient : ClientBase<IDoSomethingService>, IDoSomethingService
-        {
-            public DoSomethingClient()
-            {
-            }
-
-            public DoSomethingClient(string endpointConfigurationName) :
-                base(endpointConfigurationName)
-            {
-            }
-
-            public DoSomethingClient(string endpointConfigurationName, string remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
-            {
-            }
-
-            public DoSomethingClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) :
-                base(endpointConfigurationName, remoteAddress)
-            {
-            }
-
-            public DoSomethingClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) :
-                base(binding, remoteAddress)
-            {
-            }
-
-            public OperationResult<SomeResult> DoSomething(SomeParameters parmaters)
-            {
-                return base.Channel.DoSomething(parmaters);
-            }
-
-            public OperationStartInformation DoSomethingAsync(SomeParameters parmaters)
-            {
-                return base.Channel.DoSomethingAsync(parmaters);
-            }
-
-            public OperationResult<SomeResult> DoSomethingGetResult(Guid guid)
-            {
-                return base.Channel.DoSomethingGetResult(guid);
-            }
-
         }
 
         //  public class UnityServiceHost : ServiceHost

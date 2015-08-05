@@ -6,8 +6,9 @@ using Ziv.ServiceModel.Operations.OperationsManager;
 
 namespace SampleServiceImplementation
 {
-    class DoSomethingOperation : OperationBase<SomeResult>
+    public class DoSomethingOperation : OperationBase<SomeResult>
     {
+        public const string DO_SOMETHING_RESULT_TEMPLATE = "The number provided was '{0}'.";
         const int SLEEP_TIME_MILISECONDS = 1000;
         private const int PROCESS_STAGES = 10;
 
@@ -32,7 +33,7 @@ namespace SampleServiceImplementation
             }
             return new SomeResult
                        {
-                           Result = string.Format("The number provided was '{0}'.", _parmaters.Parameter)
+                           Result = string.Format(DO_SOMETHING_RESULT_TEMPLATE, _parmaters.Parameter)
                        };
         }
     }
