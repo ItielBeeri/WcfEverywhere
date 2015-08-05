@@ -21,7 +21,7 @@ using Ziv.ServiceModel.Runtime.DependencyInjection;
 namespace Ziv.ServiceModel.Test
 {
     [TestClass]
-    public class BasicHttp_TestFixture
+    public class NoAuthentication_TestFixture
     {
         private const string BASIC_HTTP_CONFIG_NAME = "BasicHttp.config";
         private const string NAMED_PIPE_CONFIG_NAME = "NamedPipe.config";
@@ -93,7 +93,12 @@ namespace Ziv.ServiceModel.Test
         private static void DoSomething(IDoSomethingService doSomethingService)
         {
             int parameter = 73;
-            var someResult = doSomethingService.DoSomething(new SomeParameters() {Parameter = parameter});
+
+            var svc = new DoSomethingService((new SingleProcessDeploymentOperationsManager()));
+            var r=svc.DoSomething(new SomeParameters { Parameter = 23 });
+
+
+            var someResult = doSomethingService.DoSomething(new SomeParameters() { Parameter = parameter });
             Assert.AreEqual(
                 string.Format(DoSomethingOperation.DO_SOMETHING_RESULT_TEMPLATE, parameter),
                 someResult.Result.Result);
