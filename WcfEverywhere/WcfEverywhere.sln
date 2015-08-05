@@ -1,13 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfEverywhere", "WcfEverywhere\WcfEverywhere.csproj", "{F8C51E2A-14D8-4FA6-82E3-C99C06662431}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3E4D5275-B1E9-491D-8015-04E136BD737A}"
 	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
 		..\ReadMe.md = ..\ReadMe.md
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+		WcfEverywhere.vsmdi = WcfEverywhere.vsmdi
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleServiceImplementation", "SampleServiceImplementation\SampleServiceImplementation.csproj", "{9C564AA8-C7CE-41CD-B47E-DB851A15274D}"
@@ -16,7 +17,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleServiceContract", "Sa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ziv.ServiceModel", "Ziv.ServiceModel\Ziv.ServiceModel.csproj", "{42B956A3-0351-4E7A-A21D-AF825D449858}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ziv.ServiceModel.Test", "Ziv.ServiceModel.Test\Ziv.ServiceModel.Test.csproj", "{4C6F24E8-1690-495D-9248-7B728B4B94F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ziv.ServiceModel.Runtime", "Ziv.ServiceModel.Runtime\Ziv.ServiceModel.Runtime.csproj", "{1D7A75CA-D8EE-47E6-8C67-5B5FB1139949}"
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = WcfEverywhere.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -38,6 +46,14 @@ Global
 		{42B956A3-0351-4E7A-A21D-AF825D449858}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42B956A3-0351-4E7A-A21D-AF825D449858}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42B956A3-0351-4E7A-A21D-AF825D449858}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C6F24E8-1690-495D-9248-7B728B4B94F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C6F24E8-1690-495D-9248-7B728B4B94F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C6F24E8-1690-495D-9248-7B728B4B94F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C6F24E8-1690-495D-9248-7B728B4B94F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D7A75CA-D8EE-47E6-8C67-5B5FB1139949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D7A75CA-D8EE-47E6-8C67-5B5FB1139949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D7A75CA-D8EE-47E6-8C67-5B5FB1139949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D7A75CA-D8EE-47E6-8C67-5B5FB1139949}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

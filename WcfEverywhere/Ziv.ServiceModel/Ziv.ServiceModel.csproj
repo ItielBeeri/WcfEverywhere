@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,12 +42,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Behaviors\CustomInstanceProviderServiceBehaviorAttribute.cs" />
+    <Compile Include="DependencyInjection\DependencyResolver.cs" />
+    <Compile Include="DependencyInjection\IDependecyResolver.cs" />
+    <Compile Include="ZivInstanceProvider.cs" />
+    <Compile Include="Operations\AsyncRunOperationContext.cs" />
+    <Compile Include="Operations\OperationBase.cs" />
+    <Compile Include="Operations\OperationResult.cs" />
+    <Compile Include="Operations\OperationsManagementService\IOperationsManagementService.cs" />
+    <Compile Include="Operations\OperationsManagementService\OperationsManagementService.cs" />
+    <Compile Include="Operations\OperationsManager\IOperationsManager.cs" />
+    <Compile Include="Operations\OperationsManager\ProcessDoneEventArgs.cs" />
+    <Compile Include="Operations\OperationsManager\SingleProcessDeploymentOperationsManager.cs" />
+    <Compile Include="Operations\OperationStartInformation.cs" />
+    <Compile Include="Operations\OperationState.cs" />
+    <Compile Include="Operations\OperationStateExtensions.cs" />
+    <Compile Include="Operations\OperationStatusInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ZivServiceHost.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Operations\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

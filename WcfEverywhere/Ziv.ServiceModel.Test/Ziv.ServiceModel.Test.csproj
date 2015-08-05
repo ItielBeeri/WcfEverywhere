@@ -34,8 +34,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Ziv.ServiceModel.Runtime\Dependencies\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -43,6 +48,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
@@ -52,18 +58,49 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoggedIn_TestFixture.cs" />
+    <Compile Include="NoAuthentication_TestFixture.cs" />
     <Compile Include="IOperationsManager_TestFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingleProcessDeploymentOperationsManagement_TestFixture.cs" />
+    <Compile Include="TestingServiceHost.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SampleServiceContract\SampleServiceContract.csproj">
+      <Project>{57C3E455-D40D-4909-AF60-E657A752AC7B}</Project>
+      <Name>SampleServiceContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SampleServiceImplementation\SampleServiceImplementation.csproj">
+      <Project>{9C564AA8-C7CE-41CD-B47E-DB851A15274D}</Project>
+      <Name>SampleServiceImplementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ziv.ServiceModel.Runtime\Ziv.ServiceModel.Runtime.csproj">
+      <Project>{1d7a75ca-d8ee-47e6-8c67-5b5fb1139949}</Project>
+      <Name>Ziv.ServiceModel.Runtime</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ziv.ServiceModel\Ziv.ServiceModel.csproj">
       <Project>{42B956A3-0351-4E7A-A21D-AF825D449858}</Project>
       <Name>Ziv.ServiceModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Shadow Include="Test References\Ziv.ServiceModel.accessor" />
+    <None Include="BasicHttp_LoggedIn.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NamedPipe_LoggedIn.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Tcp.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="NamedPipe.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="BasicHttp.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

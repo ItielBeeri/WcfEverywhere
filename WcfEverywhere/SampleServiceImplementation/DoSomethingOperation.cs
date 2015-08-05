@@ -1,20 +1,21 @@
 using System;
 using System.Threading;
-using ServiceUtilities;
-using SevriceContract;
-using ServiceUtilities.OperationsManager;
+using SampleServiceContract;
+using Ziv.ServiceModel.Operations;
+using Ziv.ServiceModel.Operations.OperationsManager;
 
-namespace ServiceImplementation
+namespace SampleServiceImplementation
 {
-    class DoSomethingOperation : OperationBase<SomeResult>
+    public class DoSomethingOperation : OperationBase<SomeResult>
     {
+        public const string DO_SOMETHING_RESULT_TEMPLATE = "The number provided was '{0}'.";
         const int SLEEP_TIME_MILISECONDS = 1000;
         private const int PROCESS_STAGES = 10;
 
         private readonly SomeParameters _parmaters;
 
-        public DoSomethingOperation(IOperationsManager operationsManager, Guid operationGuid, SomeParameters parmaters)
-            : base(operationsManager, operationGuid)
+        public DoSomethingOperation(IOperationsManager operationsManager, SomeParameters parmaters)
+            : base(operationsManager, "Do Something")
         {
             _parmaters = parmaters;
         }
@@ -24,15 +25,17 @@ namespace ServiceImplementation
             for (int i = 0; i < PROCESS_STAGES; i++)
             {
                 Thread.Sleep(SLEEP_TIME_MILISECONDS);
-                if (OperationsManager.GetIsOperationFlagedToCancel(OperationGuid))
+                if (IsCancelationPending())
                 {
-                    throw new OperationCanceledException();
+                    ReportCancelationCompleted();
+                    return null;
                 }
-                OperationsManager.SetOperationProgress(OperationGuid, Convert.ToInt32((((double)i) / ((double)PROCESS_STAGES)) * 100));
+                int progress = Convert.ToInt32((((double)i) / ((double)PROCESS_STAGES)) * 100);
+                ReportProgress(progress);
             }
             return new SomeResult
                        {
-                           Result = string.Format("The number provided was '{0}'.", _parmaters.Parameter)
+                           Result = string.Format(DO_SOMETHING_RESULT_TEMPLATE, _parmaters.Parameter)
                        };
         }
     }
