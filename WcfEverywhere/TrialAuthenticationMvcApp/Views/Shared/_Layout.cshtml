@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_Layout</title>
+</head>
+<body>
+    <div> 
+        <div>
+            Hello
+            @if (User.Identity.IsAuthenticated)
+            {
+                <span>@User.Identity.Name</span>
+            }
+            else
+            {
+                <span>Guest</span>
+            }
+        </div>
+        @RenderBody()
+    </div>
+</body>
+</html>
