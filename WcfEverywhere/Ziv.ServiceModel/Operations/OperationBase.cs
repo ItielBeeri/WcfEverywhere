@@ -30,6 +30,7 @@ namespace Ziv.ServiceModel.Operations
 
         public OperationResult<TResult> RunSync()
         {
+            // Sync process do not effectivly support cancelation or progress report:
             _operationsManager = new SingleProcessDeploymentOperationsManager();
             var operationStart = RunAsync();
             operationStart.Handler.WaitOne();
