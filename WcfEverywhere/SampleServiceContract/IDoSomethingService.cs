@@ -29,25 +29,4 @@ namespace SampleServiceContract
         void Logout();
     }
 
-    [ServiceContract]
-    public interface IDoSomethingLoggedIn
-    {
-        [OperationContract]
-        [PrincipalPermission(SecurityAction.Demand, Authenticated = true)]
-        OperationResult<SomeResult> DoSomething(SomeParameters parmaters);
-
-        [OperationContract]
-        [PrincipalPermission(SecurityAction.Demand, Authenticated = true)]
-        OperationStartInformation DoSomethingAsync(SomeParameters parmaters);
-
-        [OperationContract]
-        [PrincipalPermission(SecurityAction.Demand, Authenticated = true)]
-        OperationResult<SomeResult> DoSomethingGetResult(Guid guid);
-    }
-
-    [ServiceContract]
-    public interface IDoSomethingInRole : IDoSomethingService { }
-
-    [ServiceContract]
-    public interface IDoSomethingPerSpecificUser : IDoSomethingService { }
 }

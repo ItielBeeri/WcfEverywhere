@@ -45,6 +45,9 @@
     <Compile Include="Behaviors\CustomInstanceProviderServiceBehaviorAttribute.cs" />
     <Compile Include="DependencyInjection\DependencyResolver.cs" />
     <Compile Include="DependencyInjection\IDependecyResolver.cs" />
+    <Compile Include="Operations\IOperation.cs" />
+    <Compile Include="Operations\OperationStartInfo.cs" />
+    <Compile Include="ServiceBase.cs" />
     <Compile Include="ZivInstanceProvider.cs" />
     <Compile Include="Operations\AsyncRunOperationContext.cs" />
     <Compile Include="Operations\OperationBase.cs" />

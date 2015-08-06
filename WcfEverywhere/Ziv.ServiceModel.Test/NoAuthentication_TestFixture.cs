@@ -5,12 +5,12 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SampleServiceContract;
-using SampleServiceImplementation;
 using Microsoft.Practices.Unity;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 using System.ServiceModel.Channels;
+using Sample.DTO;
+using Sample.Operations;
 using Ziv.ServiceModel.Operations.OperationsManager;
 using Ziv.ServiceModel.Operations;
 using System.Diagnostics;
@@ -59,7 +59,7 @@ namespace Ziv.ServiceModel.Test
         [TestMethod]
         public void NoCommunictions_Test()
         {
-            DoSomething(new DoSomethingService(new SingleProcessDeploymentOperationsManager()));
+            DoSomething(new DoSomethingService(new SingleProcessDeploymentOperationsManager(), new SomeRequiredService(), new SomeRequiredService()));
         }
 
 
@@ -94,8 +94,8 @@ namespace Ziv.ServiceModel.Test
         {
             int parameter = 73;
 
-            var svc = new DoSomethingService((new SingleProcessDeploymentOperationsManager()));
-            var r=svc.DoSomething(new SomeParameters { Parameter = 23 });
+            var svc = new DoSomethingService((new SingleProcessDeploymentOperationsManager()), new SomeRequiredService(), new SomeRequiredService());
+            var r = svc.DoSomething(new SomeParameters { Parameter = 23 });
 
 
             var someResult = doSomethingService.DoSomething(new SomeParameters() { Parameter = parameter });
@@ -108,6 +108,8 @@ namespace Ziv.ServiceModel.Test
         private static void RegisterTypes(IUnityContainer container)
         {
             container.RegisterType<IOperationsManager, SingleProcessDeploymentOperationsManager>(new ContainerControlledLifetimeManager());
+            container.RegisterType<ISomeRequiredService, SomeRequiredService>(new ContainerControlledLifetimeManager());
+
         }
 
         //  public class UnityServiceHost : ServiceHost

@@ -1,10 +1,10 @@
 using System;
 using System.Threading;
-using SampleServiceContract;
+using Sample.DTO;
 using Ziv.ServiceModel.Operations;
 using Ziv.ServiceModel.Operations.OperationsManager;
 
-namespace SampleServiceImplementation
+namespace Sample.Operations
 {
     public class DoSomethingOperation : OperationBase<SomeResult>
     {
@@ -12,12 +12,14 @@ namespace SampleServiceImplementation
         const int SLEEP_TIME_MILISECONDS = 1000;
         private const int PROCESS_STAGES = 10;
 
-        private readonly SomeParameters _parmaters;
+        private readonly SomeParameters _parameters;
+        private readonly ISomeRequiredService _someRequiredService;
 
-        public DoSomethingOperation(IOperationsManager operationsManager, SomeParameters parmaters)
+        public DoSomethingOperation(SomeParameters parameters, IOperationsManager operationsManager, ISomeRequiredService someRequiredService, ISomeRequiredService someRequiredService2)
             : base(operationsManager, "Do Something")
         {
-            _parmaters = parmaters;
+            _parameters = parameters;
+            _someRequiredService = someRequiredService;
         }
 
         protected override SomeResult Run()
@@ -35,7 +37,7 @@ namespace SampleServiceImplementation
             }
             return new SomeResult
                        {
-                           Result = string.Format(DO_SOMETHING_RESULT_TEMPLATE, _parmaters.Parameter)
+                           Result = string.Format(DO_SOMETHING_RESULT_TEMPLATE, _parameters.Parameter)
                        };
         }
     }

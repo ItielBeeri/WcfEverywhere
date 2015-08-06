@@ -4,7 +4,7 @@ using Ziv.ServiceModel.Operations.OperationsManager;
 
 namespace Ziv.ServiceModel.Operations
 {
-    public abstract class OperationBase<TResult>
+    public abstract class OperationBase<TResult> : IOperation<TResult>
     {
         private IOperationsManager _operationsManager;
         private readonly string _displayName;
@@ -77,17 +77,5 @@ namespace Ziv.ServiceModel.Operations
             }
         }
         protected abstract TResult Run();
-    }
-
-    public class OperationStartInfo
-    {
-        public OperationStartInfo(Guid guid, AutoResetEvent handler)
-        {
-            OperationId = guid;
-            Handler = handler;
-        }
-
-        public Guid OperationId { get; private set; }
-        public AutoResetEvent Handler { get; private set; }
     }
 }

@@ -7,12 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SampleServiceContract;
-using SampleServiceImplementation;
 using Microsoft.Practices.Unity;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 using System.ServiceModel.Channels;
+using Sample.DTO;
+using Sample.Operations;
 using Ziv.ServiceModel.Operations.OperationsManager;
 using Ziv.ServiceModel.Operations;
 using System.Diagnostics;
@@ -62,9 +62,9 @@ namespace Ziv.ServiceModel.Test
         public void NoCommunictions_LoggedIn_Test()
         {
             Thread.CurrentPrincipal = new GenericPrincipal(WindowsIdentity.GetCurrent(), null);
-            DoSomething(new DoSomethingService(new SingleProcessDeploymentOperationsManager()));
+            DoSomething(new DoSomethingService(new SingleProcessDeploymentOperationsManager(), new SomeRequiredService(), new SomeRequiredService()));
         }
-        
+
         private void RunLoggedInTest(string configFileName)
         {
             IUnityContainer container = new UnityContainer();
@@ -83,16 +83,16 @@ namespace Ziv.ServiceModel.Test
                     (filemap,
                      System.Configuration.ConfigurationUserLevel.None);
 
-                using (ConfigurationChannelFactory<IDoSomethingLoggedIn> channelFactory =
-                    new ConfigurationChannelFactory<IDoSomethingLoggedIn>("ClientEP", config, null))
+                using (ConfigurationChannelFactory<IDoSomethingService> channelFactory =
+                    new ConfigurationChannelFactory<IDoSomethingService>("ClientEP", config, null))
                 {
-                    IDoSomethingLoggedIn channel = channelFactory.CreateChannel();
+                    IDoSomethingService channel = channelFactory.CreateChannel();
                     DoSomething(channel);
                 }
             }
         }
 
-        private static void DoSomething(IDoSomethingLoggedIn doSomethingService)
+        private static void DoSomething(IDoSomethingService doSomethingService)
         {
             int parameter = 73;
             var someResult = doSomethingService.DoSomething(new SomeParameters() { Parameter = parameter });

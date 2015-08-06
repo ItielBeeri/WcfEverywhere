@@ -1,4 +1,4 @@
-namespace SampleServiceContract
+namespace Sample.DTO
 {
     public class SomeResult
     {
