@@ -18,12 +18,12 @@ namespace TrialAuthenticationMvcApp.Controllers
         [HttpPost]
         public ActionResult Login(LoginVM login, string redirectUrl)
         {
-            if (BackServiceProxy.ForwardLoginRequestToService(login))
+           // if (BackServiceProxy.ForwardLoginRequestToService(login))
             {
                 FormsAuthentication.SetAuthCookie(login.Username, false);
                 return Redirect(redirectUrl);
             }
-            else
+           // else
             {
                 ModelState.AddModelError("", "Login failed");
                 return View();
