@@ -1,0 +1,17 @@
+﻿@model TrialAuthenticationMvcApp.Models.LoginVM
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+@using (Html.BeginForm())
+{
+    <div>
+        Username: @Html.TextBoxFor(l=>l.Username)
+    </div>
+    <div>
+        Password: @Html.PasswordFor(l=>l.Password)
+    </div>
+    <button type="submit">Login</button>
+}
