@@ -5,7 +5,7 @@ using System.Web;
 
 namespace TrialAuthenticationMvcApp.Models
 {
-    public class LoginVM
+    public class Login
     {
         public string Username { get; set; }
 

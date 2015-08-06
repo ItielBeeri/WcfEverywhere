@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using TrialAuthenticationMvcApp.Models;
+using TrialAuthenticationMvcApp.Infrastructure;
 
 namespace TrialAuthenticationMvcApp.Controllers
 {
@@ -16,14 +17,15 @@ namespace TrialAuthenticationMvcApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginVM login, string redirectUrl)
+        public ActionResult Login(Login login, string redirectUrl)
         {
-           // if (BackServiceProxy.ForwardLoginRequestToService(login))
+            BackServiceProxy proxy = new BackServiceProxy();
+            if (proxy.ForwardLoginRequestToService(login))
             {
                 FormsAuthentication.SetAuthCookie(login.Username, false);
-                return Redirect(redirectUrl);
+                return Redirect(redirectUrl ?? FormsAuthentication.DefaultUrl);
             }
-           // else
+           else
             {
                 ModelState.AddModelError("", "Login failed");
                 return View();

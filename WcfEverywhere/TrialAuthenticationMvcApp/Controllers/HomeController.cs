@@ -1,8 +1,10 @@
-﻿using System;
+﻿using SampleServiceContract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TrialAuthenticationMvcApp.Infrastructure;
 
 namespace TrialAuthenticationMvcApp.Controllers
 {
@@ -12,7 +14,9 @@ namespace TrialAuthenticationMvcApp.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            BackServiceProxy proxy = new BackServiceProxy();
+            var serviceResult = proxy.DoSomething(new SomeParameters { Parameter = 99 });
+            return View(serviceResult);
         }
     }
 }
