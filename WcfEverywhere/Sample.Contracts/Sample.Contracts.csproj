@@ -59,15 +59,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sample.DTO\Sample.DTO.csproj">
-      <Project>{157BD1B1-D74F-45E6-A7FF-510C43E43C23}</Project>
+      <Project>{157bd1b1-d74f-45e6-a7ff-510c43e43c23}</Project>
       <Name>Sample.DTO</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ziv.ServiceModel.CodeGeneration\Ziv.ServiceModel.CodeGeneration.csproj">
-      <Project>{FC157327-4DB2-419D-A0FE-0BE0E6E84E8A}</Project>
+      <Project>{fc157327-4db2-419d-a0fe-0be0e6e84e8a}</Project>
       <Name>Ziv.ServiceModel.CodeGeneration</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ziv.ServiceModel\Ziv.ServiceModel.csproj">
-      <Project>{42B956A3-0351-4E7A-A21D-AF825D449858}</Project>
+      <Project>{42b956a3-0351-4e7a-a21d-af825d449858}</Project>
       <Name>Ziv.ServiceModel</Name>
     </ProjectReference>
   </ItemGroup>

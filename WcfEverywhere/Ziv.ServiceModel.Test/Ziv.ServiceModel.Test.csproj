@@ -79,7 +79,7 @@
       <Name>Sample.Operations</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sample.Services\Sample.Services.csproj">
-      <Project>{2009B4F6-84A5-46E3-A3E0-1D62433E78B4}</Project>
+      <Project>{2009b4f6-84a5-46e3-a3e0-1d62433e78b4}</Project>
       <Name>Sample.Services</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ziv.ServiceModel.Runtime\Ziv.ServiceModel.Runtime.csproj">

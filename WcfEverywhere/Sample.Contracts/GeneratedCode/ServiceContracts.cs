@@ -62,30 +62,4 @@ namespace Sample.Operations
 
 
 
-    
-
-namespace Sample.Operations 
-{
-    using System;
-    using Ziv.ServiceModel.Operations;
-    using Ziv.ServiceModel.Operations.OperationsManager;
-    using Sample.DTO;
-    using System.ServiceModel;
-
-    [ServiceContract]
-    public interface ITestService 
-    {
-        [OperationContract]
-        OperationResult<SomeResult> Test(SomeParameters params1);
-
-        [OperationContract]
-        OperationStartInformation TestAsync(SomeParameters params1);
-
-        [OperationContract]        
-        OperationResult<SomeResult> TestGetResult(Guid operationId);
-    }
-}
-
-
-
 

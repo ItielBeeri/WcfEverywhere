@@ -104,48 +104,4 @@ namespace Sample.Operations
 
 
 
-    
-
-namespace Sample.Operations 
-{
-    using System;
-    using Ziv.ServiceModel;
-    using Ziv.ServiceModel.Operations;
-    using Sample.DTO;
-    using Ziv.ServiceModel.Operations.OperationsManager;
-
-    public class TestService : ServiceBase<SomeResult>, ITestService
-    {
-        private readonly IOperationsManager _operationsManager;
-
-        public TestService(IOperationsManager operationsManager)
-            : base(operationsManager)
-        {
-            _operationsManager = operationsManager;
-        }
-
-        public OperationResult<SomeResult> Test(SomeParameters params1)
-        {
-            return DoOperation(GetOperation(params1));
-        }
-
-        public OperationStartInformation TestAsync(SomeParameters params1)
-        {
-            return DoOperationAsync(GetOperation(params1));
-        }
-
-        public OperationResult<SomeResult> TestGetResult(Guid operationId)
-        {
-            return GetOperationResult(operationId);
-        }
-
-        protected TestOperation GetOperation(SomeParameters params1)
-        {
-            return new TestOperation(params1, _operationsManager);
-        }
-    }
-}
-
-
-
 
